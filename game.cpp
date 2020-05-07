@@ -1,4 +1,6 @@
 #include "game.h"
+#include "texture_manager.h"
+
 #include <SDL2/SDL_image.h>
 #include <iostream>
 
@@ -32,10 +34,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
         }
         m_isRunning = true;
 
-        SDL_Surface* tmpSurface = IMG_Load("/data/chrusel-sdl2/assets/player-frontal-48.png");
-        g_playerTex = SDL_CreateTextureFromSurface(m_renderer, tmpSurface);
-        SDL_FreeSurface(tmpSurface);
-
+        g_playerTex = TextureManager::LoadTexture("/data/sdl2-chrusel/assets/player-frontal-48.png", m_renderer);
     } else {
         m_isRunning = false;
     }
