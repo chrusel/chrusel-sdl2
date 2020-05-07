@@ -4,7 +4,7 @@ project(sdl2game)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
-set(SOURCE_FILES main.cpp game.cpp texture_manager.cpp)
+set(SOURCE_FILES main.cpp game.cpp texture_manager.cpp game_object.cpp)
 set(INCLUDE_DIRS include)
 
 find_package(SDL2 REQUIRED)

@@ -1,13 +1,12 @@
 #include "game.h"
 #include "texture_manager.h"
+#include "game_object.h"
 
 #include <SDL2/SDL_image.h>
 #include <iostream>
 
 // temp global vars
-SDL_Texture* g_playerTex {};
-SDL_Rect g_srcR {} , g_destR {};
-int g_cnt = {0};
+GameObject* g_player;
 
 Game::Game() {
 }
@@ -34,7 +33,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
         }
         m_isRunning = true;
 
-        g_playerTex = TextureManager::LoadTexture("/data/sdl2-chrusel/assets/player-frontal-48.png", m_renderer);
+        g_player = new GameObject("/data/sdl2-chrusel/assets/player-frontal-48.png", m_renderer, 0, 0);
     } else {
         m_isRunning = false;
     }
@@ -53,18 +52,12 @@ void Game::handleEvents() {
 }
 
 void Game::update() {
-    g_cnt++;
-    g_destR.x = g_cnt % 800;
-    if (g_destR.x == 0)
-        g_destR.y = ++g_destR.y % 600;
-    g_destR.h = 48;
-    g_destR.w = 48;
-//    std::cout << m_cnt << std::endl;
+    g_player->update();
 }
 
 void Game::render() {
     SDL_RenderClear(m_renderer);
-    SDL_RenderCopy(m_renderer, g_playerTex, NULL, &g_destR);
+    g_player->render();
     SDL_RenderPresent(m_renderer);
 }
 
