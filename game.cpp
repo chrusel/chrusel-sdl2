@@ -7,6 +7,7 @@
 
 // temp global vars
 GameObject* g_player;
+GameObject* g_enemy;
 
 Game::Game() {
 }
@@ -34,6 +35,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
         m_isRunning = true;
 
         g_player = new GameObject("/data/sdl2-chrusel/assets/player-frontal-48.png", m_renderer, 0, 0);
+        g_enemy = new GameObject("/data/sdl2-chrusel/assets/enemy-right-48.png", m_renderer, 0, 0);
     } else {
         m_isRunning = false;
     }
@@ -53,11 +55,15 @@ void Game::handleEvents() {
 
 void Game::update() {
     g_player->update();
+    g_enemy->update();
 }
 
 void Game::render() {
     SDL_RenderClear(m_renderer);
+
     g_player->render();
+    g_enemy->render();
+
     SDL_RenderPresent(m_renderer);
 }
 
