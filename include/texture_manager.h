@@ -7,7 +7,7 @@
 
 class TextureManager {
 public:
-  static SDL_Texture* LoadTexture(const char* filename, SDL_Renderer* renderer);
+  static SDL_Texture* LoadTexture(const char* filename);
 };
 
 #endif // CHRUSEL_TEXTURE_MANAGER_H

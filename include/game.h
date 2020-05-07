@@ -15,11 +15,11 @@ public:
     void render();
     void clean();
     bool running() { return m_isRunning; };
+    static SDL_Renderer* s_renderer;
 
 private:
     bool m_isRunning;
     SDL_Window *m_window;
-    SDL_Renderer * m_renderer;
 };
 
 #endif // #ifndef CHRUSEL_GAME_H

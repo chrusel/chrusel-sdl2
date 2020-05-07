@@ -7,7 +7,7 @@ int main()
   constexpr uint32_t frameDelay {1000/FPS};
 
   Game *game = new Game();
-  game->init("sdl2game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, false);
+  game->init("sdl2game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 640, false);
 
 
   while (game->running()) {

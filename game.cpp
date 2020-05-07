@@ -9,6 +9,8 @@
 GameObject* g_player;
 GameObject* g_enemy;
 
+SDL_Renderer *Game::s_renderer {nullptr};
+
 Game::Game() {
 }
 
@@ -27,15 +29,15 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
         if (m_window) {
             std::cout << "Window created!" << std::endl;
         }
-        m_renderer = SDL_CreateRenderer(m_window, -1, 0);
-        if (m_renderer) {
-            SDL_SetRenderDrawColor(m_renderer, 255, 255, 255, 255);
+        Game::s_renderer = SDL_CreateRenderer(m_window, -1 ,0);
+        if (Game::s_renderer) {
+            SDL_SetRenderDrawColor(Game::s_renderer, 255, 255, 255, 255);
             std::cout << "Renderer created!" << std::endl;
         }
         m_isRunning = true;
 
-        g_player = new GameObject("/data/sdl2-chrusel/assets/player-frontal-48.png", m_renderer, 0, 0);
-        g_enemy = new GameObject("/data/sdl2-chrusel/assets/enemy-right-48.png", m_renderer, 0, 0);
+        g_player = new GameObject("/data/sdl2-chrusel/assets/player-frontal-48.png", 0, 0);
+        g_enemy = new GameObject("/data/sdl2-chrusel/assets/enemy-right-48.png", 40, 40);
     } else {
         m_isRunning = false;
     }
@@ -59,17 +61,17 @@ void Game::update() {
 }
 
 void Game::render() {
-    SDL_RenderClear(m_renderer);
+    SDL_RenderClear(Game::s_renderer);
 
     g_player->render();
     g_enemy->render();
 
-    SDL_RenderPresent(m_renderer);
+    SDL_RenderPresent(Game::s_renderer);
 }
 
 void Game::clean() {
     SDL_DestroyWindow(m_window);
-    SDL_DestroyRenderer(m_renderer);
+    SDL_DestroyRenderer(Game::s_renderer);
     SDL_Quit();
     std::cout << "Game cleaned" << std::endl;
 }

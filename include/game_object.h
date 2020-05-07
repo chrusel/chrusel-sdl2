@@ -8,7 +8,7 @@
 
 class GameObject {
 public:
-    GameObject(const char* textureSheet, SDL_Renderer* renderer, int x, int y);
+    GameObject(const char* textureSheet, int x, int y);
     ~GameObject();
 
     void update();
@@ -20,7 +20,6 @@ private:
     SDL_Texture* m_objTexure;
     SDL_Rect m_srcRect;
     SDL_Rect m_destRect;
-    SDL_Renderer* m_renderer;
 };
 
 #endif // #ifndef CHRUSEL_GAME_OBJECT_H
