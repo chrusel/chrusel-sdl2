@@ -21,7 +21,7 @@ void GameObject::update() {
   m_srcRect.y = 0;
 
   m_destRect.x = m_xpos % 800;
-  m_destRect.y = m_ypos % 600;
+  m_destRect.y = m_ypos % 640;
   m_destRect.w = m_srcRect.w * 2;
   m_destRect.h = m_srcRect.h * 2;
 }

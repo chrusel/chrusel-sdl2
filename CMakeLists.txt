@@ -6,7 +6,7 @@ file(COPY assets DESTINATION ${CMAKE_BINARY_DIR})
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
-set(SOURCE_FILES src/main.cpp src/game.cpp src/texture_manager.cpp src/game_object.cpp)
+set(SOURCE_FILES src/main.cpp src/game.cpp src/texture_manager.cpp src/game_object.cpp src/map.cpp)
 set(INCLUDE_DIRS include)
 
 find_package(SDL2 REQUIRED)

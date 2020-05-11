@@ -1,6 +1,7 @@
 #include "game.h"
 #include "texture_manager.h"
 #include "game_object.h"
+#include "map.h"
 
 #include <SDL2/SDL_image.h>
 #include <iostream>
@@ -8,6 +9,7 @@
 // temp global vars
 GameObject* g_player;
 GameObject* g_enemy;
+Map* g_map;
 
 SDL_Renderer *Game::s_renderer {nullptr};
 
@@ -38,6 +40,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 
         g_player = new GameObject("assets/player-frontal-48.png", 0, 0);
         g_enemy = new GameObject("assets/enemy-right-48.png", 40, 40);
+        g_map = new Map();
     } else {
         m_isRunning = false;
     }
@@ -63,6 +66,7 @@ void Game::update() {
 void Game::render() {
     SDL_RenderClear(Game::s_renderer);
 
+    g_map->drawMap();
     g_player->render();
     g_enemy->render();
 
