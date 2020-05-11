@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.7)
 
 project(sdl2game)
 
+file(COPY assets DESTINATION ${CMAKE_BINARY_DIR})
+
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 set(SOURCE_FILES src/main.cpp src/game.cpp src/texture_manager.cpp src/game_object.cpp)

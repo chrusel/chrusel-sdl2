@@ -36,8 +36,8 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
         }
         m_isRunning = true;
 
-        g_player = new GameObject("/data/sdl2-chrusel/assets/player-frontal-48.png", 0, 0);
-        g_enemy = new GameObject("/data/sdl2-chrusel/assets/enemy-right-48.png", 40, 40);
+        g_player = new GameObject("assets/player-frontal-48.png", 0, 0);
+        g_enemy = new GameObject("assets/enemy-right-48.png", 40, 40);
     } else {
         m_isRunning = false;
     }
