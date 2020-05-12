@@ -1,17 +1,17 @@
 #include "game.h"
 #include "texture_manager.h"
-#include "game_object.h"
 #include "map.h"
+#include "ecs/components.h"
 
 #include <SDL2/SDL_image.h>
 #include <iostream>
 
-// temp global vars
-GameObject* g_player;
-GameObject* g_enemy;
-Map* g_map;
+SDL_Renderer *Game::s_renderer{nullptr};
 
-SDL_Renderer *Game::s_renderer {nullptr};
+Map*    map;
+Manager manager;
+auto&   player(manager.addEntity());
+auto&   enemy(manager.addEntity());
 
 Game::Game() {
 }
@@ -37,13 +37,17 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
             std::cout << "Renderer created!" << std::endl;
         }
         m_isRunning = true;
-
-        g_player = new GameObject("assets/player-frontal-48.png", 0, 0);
-        g_enemy = new GameObject("assets/enemy-right-48.png", 40, 40);
-        g_map = new Map();
     } else {
         m_isRunning = false;
     }
+
+    map = new Map();
+
+    // ecs implementation
+    player.addComponent<PositionComponent>();
+    player.addComponent<SpriteComponent>("assets/player-frontal-48.png");
+    enemy.addComponent<PositionComponent>(40, 40);
+    enemy.addComponent<SpriteComponent>("assets/enemy-frontal-48.png");
 }
 
 void Game::handleEvents() {
@@ -59,16 +63,15 @@ void Game::handleEvents() {
 }
 
 void Game::update() {
-    g_player->update();
-    g_enemy->update();
+  manager.refresh();
+  manager.update();
 }
 
 void Game::render() {
     SDL_RenderClear(Game::s_renderer);
 
-    g_map->drawMap();
-    g_player->render();
-    g_enemy->render();
+    map->drawMap();
+    manager.draw();
 
     SDL_RenderPresent(Game::s_renderer);
 }

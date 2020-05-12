@@ -1,21 +1,18 @@
 #pragma once
 
-#include "ecs.h"
+#include "components.h"
 
 class PositionComponent : public Component
 {
 public:
-  int x() {
-    return m_xpos;
-  }
-
-  int y() {
-    return m_ypos;
-  }
-
-  void init() override {
+  PositionComponent() {
     m_xpos = 0;
     m_ypos = 0;
+  }
+
+  PositionComponent(int x, int y) {
+    m_xpos = x;
+    m_ypos = y;
   }
 
   void update() override {
@@ -26,6 +23,14 @@ public:
   void setPos(int x, int y) {
     m_xpos = x;
     m_ypos = y;
+  }
+
+  int x() {
+    return m_xpos;
+  }
+
+  int y() {
+    return m_ypos;
   }
 
 private:
